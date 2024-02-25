@@ -1,0 +1,17 @@
+{
+  "name": "agh-trips",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-client": "npm install --prefix client",
+    "start-client": "npm run start --prefix client",
+    "install-server": "npm install --prefix server",
+    "start-server": "npm run start --prefix server",
+    "install": "npm run install-server & npm run install-client",
+    "start": "npm run start-server & npm run start-client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

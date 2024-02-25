@@ -1,0 +1,8 @@
+<nz-select nzMode="multiple" nzPlaceHolder="Wybierz role" [(ngModel)]="selectedRoles" (ngModelChange)="selectionChange($event)">
+  <nz-option
+    *ngFor="let option of listOfRoles"
+    [nzLabel]="option"
+    [nzValue]="option"
+    [nzHide]="!isNotSelected(option)"
+  ></nz-option>
+</nz-select>

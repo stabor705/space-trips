@@ -1,0 +1,19 @@
+<nz-card style="width:600px;" [nzTitle]="title">
+  <form nz-form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Podaj prawidłowy adres email">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="email" placeholder="Email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Hasło musi mieć minimum 6 znaków">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Hasło" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" [disabled]="formGroup.invalid">{{submitLabel}}</button>
+  </form>
+</nz-card>

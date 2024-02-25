@@ -1,0 +1,10 @@
+<nz-result
+  nzStatus="success"
+  nzTitle="Wycieczka została dodana!"
+  nzSubTitle="Możesz dodać kolejną lub przejrzeć listę wszystkich dostepnych"
+>
+  <div nz-result-extra class="feedback">
+    <button nz-button nzType="primary" [routerLink]="['../', 'add']">Dodaj wycieczkę</button>
+    <button nz-button [routerLink]="['../']">Lista wycieczek</button>
+  </div>
+</nz-result>

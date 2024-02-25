@@ -1,0 +1,36 @@
+<ng-container>
+  <form nz-form nzLayout="vertical" [formGroup]="filterForm">
+    <nz-form-item>
+      <nz-form-label nzFor="name">Znajdź wycieczkę</nz-form-label>
+      <nz-form-control>
+        <input nz-input name="name" type="text" formControlName="name" placeholder="Wpisz czego szukasz">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="country">Wybierz kraj podróży</nz-form-label>
+      <nz-select formControlName="country" nzAllowClear nzPlaceHolder="Wybierz kraj">
+        <nz-option *ngFor="let country of tripsCountries" [nzValue]="country" [nzLabel]="country"></nz-option>
+      </nz-select>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="priceRange">Cena</nz-form-label>
+      <nz-slider
+          nzRange
+          formControlName="priceRange"
+          nzTooltipPlacement="bottom"
+      ></nz-slider>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzFor="ratingRange">Ocena</nz-form-label>
+      <nz-slider
+        formControlName="ratingRange"
+        [nzMin]="0"
+        [nzMax]="6"
+        [nzStep]="1"
+        [nzRange]="true">
+      </nz-slider>
+    </nz-form-item>
+  </form>
+</ng-container>

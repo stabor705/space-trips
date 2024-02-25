@@ -1,0 +1,73 @@
+<nz-card nzType="inner" class="trip-card" [nzActions]="[actionRate, actionAddToCart]">
+  <nz-card-meta
+    [nzTitle]="title"
+    [nzDescription]="description"
+    [nzAvatar]="avatarTemplate"
+  ></nz-card-meta>
+  <ng-template #title>
+    <div nz-row>
+      <div nz-col nzSpan="17"><h3>{{ trip.name }}</h3></div>
+      <div nz-col nzSpan="7">
+        <h2>
+          {{ trip.price | currencyConverter:selectedCurrency }}
+          <small nz-typography nzType="secondary">/ osoba</small>
+        </h2>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #description>
+    <div nz-row nzGutter="32">
+      <div nz-col nzSpan="12">
+        <p>{{ trip.description }}</p>
+        <h4>Kraj wyjazdu:</h4>
+        <div>{{ trip.country }}</div>
+      </div>
+      <div nz-col nzSpan="12">
+        <h4>Termin wycieczki:</h4>
+        <div>{{ trip.startAt | date }} - {{ trip.endAt | date }}</div>
+        <h4>Liczba miejsc: {{trip.available}}</h4>
+        <nz-alert *ngIf="trip.available <= 5 && trip.available > 0" nzType="warning" nzMessage="Nie zwlekaj! Ostatnie miejsca!"
+                  nzShowIcon></nz-alert>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #avatarTemplate>
+    @if (loggedIn$ | async) {
+      <img alt="{{ trip.name }}" [ngSrc]="trip.imageUrl" width="100" height="100" [routerLink]="['/trips', trip._id]">
+    } @else {
+      <img alt="{{ trip.name }}" [ngSrc]="trip.imageUrl" width="100" height="100">
+    }
+  </ng-template>
+
+  <ng-template #actionDelete>
+    <button
+      nz-button
+      nzType="default"
+      nzDanger
+      nz-popconfirm
+      nzPopconfirmTitle="Na pewno chcesz usunąć wycieczkę?"
+      nzPopconfirmPlacement="top"
+      (nzOnConfirm)="deleteTrip(trip)"
+      (nzOnCancel)="cancel()"
+    >Usuń wycieczkę
+    </button>
+  </ng-template>
+  <ng-template #actionRate>
+    <nz-rate [(ngModel)]="trip.rating" [nzTooltips]="rateLabels" nzCount="6" [disabled]="true"></nz-rate>
+    <span *ngIf="trip.rating" class="ant-rate-text">{{ trip.rating ? rateLabels[trip.rating - 1] : '' }}</span>
+  </ng-template>
+  <ng-template #actionAddToCart>
+    <nz-space *aghRoleAllow="[Roles.admin,Roles.manager,Roles.client]">
+      <nz-form-label nzFor="qty">Liczba osób</nz-form-label>
+      <nz-input-number name="qty" *nzSpaceItem [(ngModel)]="defaultQuantity" [nzMin]="1" [nzMax]="trip.available"
+                       [nzStep]="1" nzSize="large"></nz-input-number>
+      <button *nzSpaceItem nz-button nzType="primary" nzSize="large"
+              [disabled]="trip.available < 1"
+              (click)="addToCart(trip, defaultQuantity)">
+        <span nz-icon nzType="shopping-cart"></span>
+        Rezerwuj
+      </button>
+
+    </nz-space>
+  </ng-template>
+</nz-card>

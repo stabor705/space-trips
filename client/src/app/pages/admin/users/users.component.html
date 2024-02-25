@@ -1,0 +1,20 @@
+<nz-table #usersTable [nzData]="$any(usersCollection$ | async)" nzFrontPagination="false">
+  <thead>
+  <tr>
+    <th nzWidth="300px">Email</th>
+    <th>Role</th>
+    <th nzWidth="200px">Konto zbanowane</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of usersTable.data">
+    <td>{{ user.email }}</td>
+    <td>
+      <agh-role-selector [selectedRoles]="user.roles" (onChange)="rolesChange($event, user)"></agh-role-selector>
+    </td>
+    <td>
+      <agh-ban-toggle [user]="user" [loading]="$any(loading$ | async)" (onToggle)="toggleUserState($event)"></agh-ban-toggle>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

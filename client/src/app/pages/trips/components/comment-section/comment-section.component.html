@@ -1,0 +1,16 @@
+<div *ngIf="trip.feedback.length; else noCommentsTemplate">
+  <div *ngFor="let comment of trip.feedback" class="comment">
+    <h3>{{ comment.title }}</h3>
+    <p>{{ comment.comment }}</p>
+    <div class="comment-info">
+      <span>Autor: {{ comment.nick }}</span>
+      <span>Ocena: {{ comment.rating }}/5</span>
+      <span *ngIf="comment.orderDate">Data: {{ comment.orderDate | date:'dd.MM.yyyy' }}</span>
+    </div>
+    <button *aghRoleAllow="['ADMIN']" nz-button nzDanger nzType="default" class="move-right" (click)="removeReview(comment._id)">Usuń komentarz</button>
+  </div>
+</div>
+
+<ng-template #noCommentsTemplate>
+  <p>Brak komentarzy dla tej wycieczki.</p>
+</ng-template>

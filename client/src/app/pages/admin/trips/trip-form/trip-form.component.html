@@ -1,0 +1,97 @@
+<form [formGroup]="tripForm" nz-form nzLayout="vertical">
+  <nz-card style="max-width: 600px" nzTitle="Dodaj wycieczkę">
+    <nz-form-item>
+      <nz-form-label nzFor="name">Nazwa wycieczki</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="name" type="text" placeholder="Nazwa wycieczki">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="country">Kraj</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="country" type="text" placeholder="Kraj">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="address">Lokalizacja GPS</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="address" type="text" placeholder="np, 48.19462948350713, 16.378983659182985">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="description">Opis</nz-form-label>
+      <nz-form-control>
+        <textarea nz-input formControlName="description" type="text" placeholder="Opis"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="price">Cena</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="price" type="number" placeholder="Cena">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="dateRange">Okres trwania</nz-form-label>
+      <nz-form-control>
+        <nz-range-picker [nzDisabledDate]="disabledDate" formControlName="dateRange"></nz-range-picker>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="capacity">Ilość miejsc</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="capacity" type="number" placeholder="Ilość miejsc">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="imageUrl">Link do zdjęcia</nz-form-label>
+      <nz-form-control>
+        <input nz-input formControlName="imageUrl" type="text" placeholder="Link do zdjęcia">
+      </nz-form-control>
+    </nz-form-item>
+
+    <div formArrayName="gallery">
+      <nz-form-item *ngFor="let control of $any(tripForm.get('gallery')).controls; let id=index">
+        <nz-form-label nzFor="imageUrl">Link do zdjęcia #{{ id + 1 }} w galerii obrazków</nz-form-label>
+        <nz-form-control>
+          <input nz-input [formControl]="control" type="text" placeholder="Link do zdjęcia" class="dynamic-input">
+          <span
+            nz-icon
+            nzType="minus-circle-o"
+            class="dynamic-delete-button"
+            (click)="removeGalleryControl({id, instance: control}, $event)"
+            *ngIf="id > 0"
+          ></span>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="dashed" class="add-button" (click)="addGalleryControl()">
+          <span nz-icon nzType="plus"></span>
+          Dodaj następny obrazek
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-divider></nz-divider>
+
+    <nz-form-item>
+      <div #mapContainer class="map-container"></div>
+    </nz-form-item>
+
+    <nz-form-item>
+      <button [disabled]="tripForm.invalid" nz-button nzType="primary" [nzLoading]="loading" (click)="onSubmit()">
+        {{ tripData ? 'Zapisz zmiany' : 'Dodaj wycieczkę' }}
+      </button>
+    </nz-form-item>
+
+
+  </nz-card>
+</form>

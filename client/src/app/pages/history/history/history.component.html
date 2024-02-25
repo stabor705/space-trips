@@ -1,0 +1,25 @@
+<div class="status-filter">
+  <label for="statusSelect">Filtruj po statusie:</label>
+  <select id="statusSelect" [(ngModel)]="selectedStatus" (change)="onStatusChange()">
+    <option value="">Wszystkie</option>
+    <option value="Oczekuje na rozpoczęcie">Oczekuje na rozpoczęcie</option>
+    <option value="W trakcie trwaniae">W Trakcie</option>
+    <option value="zakonczona">Zakończona</option>
+  </select>
+</div>
+
+<nz-collapse>
+  <ng-container *ngFor="let order of filteredOrders">
+    <nz-collapse-panel *ngFor="let item of order.items" [nzHeader]="getPanelHeader(item.trip)">
+      <div class="order-content">
+        <div class="trip-details">
+          <p>Nazwa Wycieczki:<a [routerLink]="['/trips/', item.trip._id]"> {{ item.trip.name }}</a></p>
+          <p>Ilość osób: {{ item.quantity }}</p>
+          <p>Cena za osobę: {{ item.trip.price | currencyConverter:selectedCurrency }}</p>
+          <p>Suma: {{ item.value  | currencyConverter:selectedCurrency }}</p>
+        </div>
+      </div>
+    </nz-collapse-panel>
+  </ng-container>
+</nz-collapse>
+

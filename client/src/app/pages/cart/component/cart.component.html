@@ -1,0 +1,81 @@
+
+  <ng-container *ngIf="cart.items.length > 0; else emptyCart">
+    <ng-container *ngFor="let item of cart.items">
+      <nz-card nzType="inner" class="trip-card">
+        <nz-card-meta [nzTitle]="titleTemplate" [nzDescription]="descriptionTemplate"
+                      [nzAvatar]="avatarTemplate"></nz-card-meta>
+
+        <ng-template #titleTemplate>
+          <div nz-row>
+            <div nz-col nzSpan="17"><h3>{{ item.trip.name }}</h3></div>
+            <div nz-col nzSpan="7">
+              <h2>
+                {{ item.trip.price  | currencyConverter:selectedCurrency }}
+                <small nz-typography nzType="secondary">/ osoba</small>
+              </h2>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #descriptionTemplate>
+          <div nz-row nzGutter="32">
+            <div nz-col nzSpan="12">
+              <p>{{ item.trip.description }}</p>
+              <h4>Kraj wyjazdu:</h4>
+              <div>{{ item.trip.country }}</div>
+            </div>
+            <div nz-col nzSpan="12">
+              <h4>Termin wycieczki:</h4>
+              <div>{{ item.trip.startAt | date }} - {{ item.trip.endAt | date }}</div>
+              <h2>Ilość osób: {{ item.quantity }}</h2>
+              <div>
+                <button nz-button nzType="default" (click)="updateCartItem(item, item.quantity + 1)">Dodaj</button>
+                <button nz-button nzType="dashed" nzDanger (click)="updateCartItem(item, item.quantity - 1)" *ngIf="item.quantity > 1">
+                  Usuń
+                </button>
+
+              </div>
+              <h2>
+                Razem: {{ item.value | currencyConverter:selectedCurrency }}
+              </h2>
+              <label nz-checkbox
+                     [(ngModel)]="item.selected">
+                Wybierz
+              </label>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template #avatarTemplate>
+          <img alt="{{item.trip.name}}" [ngSrc]="item.trip.imageUrl" width="100" height="100">
+        </ng-template>
+
+        <div nz-row nzGutter="32">
+          <div nz-col nzSpan="12">
+            <button nz-button nzType="default" nzDanger nzGhost (click)="deleteFromCart(item)">Usuń z koszyka</button>
+          </div>
+        </div>
+
+      </nz-card>
+
+    </ng-container>
+  </ng-container>
+
+  <div class="total-cost" *ngIf="cart.items.length > 0">
+    <h3>Całkowity koszt wybranych wycieczek:
+      {{ cart.total | currencyConverter:selectedCurrency }}
+    </h3>
+  </div>
+  <button nz-button nzType="primary" (click)="buy()" [disabled]="cart.items.length === 0">Kup</button>
+
+
+<ng-template #emptyCart>
+  <nz-card>
+  <nz-result nzStatus="404" nzTitle="Koszyk pusty" nzSubTitle="Twój koszyk jest pusty. Przeglądaj naszą ofertę i rezerwuj wycieczki.">
+    <div nz-result-extra class="centered-button">
+      <button nz-button nzType="primary" routerLink="../trips">Nasza oferta</button>
+    </div>
+
+  </nz-result>
+  </nz-card>
+</ng-template>

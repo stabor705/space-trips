@@ -1,0 +1,129 @@
+<div *ngIf="trip as tripDetails" class="trip-details">
+  <nz-card nzType="inner" class="trip-details">
+    <nz-row gutter="8">
+      <nz-col nzSpan="16" class="carousel-content">
+        <nz-carousel nzAutoPlay class="carousel">
+          <div nz-carousel-content *ngFor="let index of tripDetails.gallery">
+            <img [src]="index" class="carousel-img">
+          </div>
+        </nz-carousel>
+
+      </nz-col>
+      <nz-col nzSpan="8" class="text-content">
+
+        <h2 style="margin-bottom: 10px;">
+          {{ tripDetails.name }}
+          <small nz-typography nzType="secondary">{{ tripDetails.country }}</small>
+        </h2>
+
+        <div style="margin-bottom: 10px;">
+          {{ tripDetails.price | currencyConverter:selectedCurrency }} <small>/ osoba</small>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+          {{ tripDetails.startAt | date }} - {{ tripDetails.endAt | date }}
+        </div>
+
+        <div style="margin-bottom: 10px;">Średnia ocen:</div>
+
+        <nz-rate [(ngModel)]="tripDetails.rating" [nzTooltips]="rateLabels" nzCount="6" [disabled]="true"></nz-rate>
+        <span *ngIf="trip.rating" class="ant-rate-text">{{ trip.rating ? rateLabels[trip.rating - 1] : '' }}</span>
+
+        <nz-space *aghRoleAllow="[Roles.admin,Roles.manager,Roles.client]" class="space" style="margin-top: 20px;">
+          <nz-form-label nzFor="qty" class="label-form">Liczba osób</nz-form-label>
+          <nz-input-number name="qty" *nzSpaceItem [(ngModel)]="defaultQuantity" [nzMin]="1"
+                           [nzMax]="tripDetails.available"
+                           [nzStep]="1" nzSize="large"></nz-input-number>
+          <button *nzSpaceItem nz-button nzType="primary" nzSize="large"
+                  [disabled]="tripDetails.available < 1"
+                  (click)="addToCart(trip, defaultQuantity)" style="margin-left: 10px;">
+            <span nz-icon nzType="shopping-cart"></span>
+            Rezerwuj
+          </button>
+        </nz-space>
+
+      </nz-col>
+
+    </nz-row>
+  </nz-card>
+  <nz-row gutter="32">
+    <nz-col nzSpan="16">
+      <nz-card nzType="inner" class="trip-details">
+        <p>{{ tripDetails.description }}</p>
+      </nz-card>
+      <nz-card nzType="inner" class="trip-details">
+                <google-map
+                  height="400px"
+                  width="100%"
+                  [center]="center"
+                  [zoom]="zoom">
+                  <map-marker [position]="center"></map-marker>
+                </google-map>
+      </nz-card>
+      <nz-card nzType="inner" class="trip-details">
+        <agh-comment-section [trip]="tripDetails"></agh-comment-section>
+        </nz-card>
+    </nz-col>
+    <nz-col nzSpan="8">
+
+      <nz-card nzType="inner" class="trip-details" nzTitle="Dodaj recenzję"
+               *aghRoleAllow="[Roles.client, Roles.manager]">
+        <ng-container *ngIf="canReview$ | async; else notPurchase">
+          <ng-container *ngIf="!user.banned; else bannedUser">
+            <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()" nz-form nzLayout="vertical"
+                  *ngIf="didNotVote; else voteAlready">
+              <nz-form-item>
+                <nz-form-label nzFor="rating">Ocena</nz-form-label>
+                <nz-form-control>
+                  <nz-rate formControlName="rating" [nzTooltips]="rateLabels" nzCount="6"></nz-rate>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzFor="nick">Nick</nz-form-label>
+                <nz-form-control>
+                  <input nz-input formControlName="nick" type="text" placeholder="Twój Nick">
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzFor="title">Tytuł recenzji</nz-form-label>
+                <nz-form-control>
+                  <input nz-input formControlName="title" type="text" placeholder="Tytuł recenzji">
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzFor="comment">Treść recenzji</nz-form-label>
+                <nz-form-control>
+                  <textarea nz-input formControlName="comment" rows="5" placeholder="Treść recenzji"></textarea>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzFor="orderDate">Data zakupu</nz-form-label>
+                <nz-form-control>
+                  <input nz-input formControlName="orderDate" type="date">
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <button [disabled]="!reviewForm.valid" nz-button type="submit">Dodaj recenzję</button>
+              </nz-form-item>
+
+            </form>
+          </ng-container>
+        </ng-container>
+
+        <ng-template #voteAlready>
+          <div>Juz oceniłeś tą wycieczkę</div>
+        </ng-template>
+
+        <ng-template #notPurchase>
+          <div>Wycieczke bedziesz mógł ocenić po zakupie</div>
+        </ng-template>
+
+        <ng-template #bannedUser>
+          <div>Nie możesz ocenić wycieczki.</div>
+        </ng-template>
+
+      </nz-card>
+    </nz-col>
+  </nz-row>
+
+</div>

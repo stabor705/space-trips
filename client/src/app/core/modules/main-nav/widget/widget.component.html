@@ -1,0 +1,23 @@
+<div class="cart-popover" *ngIf="cart.items.length; else cartEmpty">
+  <ul>
+    <li *ngFor="let item of cart.items">{{ item.trip.name }},  Ilość osób: {{ item.quantity}} - {{item.value | currencyConverter:selectedCurrency}}</li>
+  </ul>
+  <p>Wartość koszyka: {{ cart.total || 0 | currencyConverter:selectedCurrency }}</p>
+  <button nz-button nzType="primary" routerLink="cart">Przejdź do koszyka</button>
+</div>
+<ng-template #cartEmpty>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="contentTpl"
+    [nzNotFoundFooter]="footerTpl"
+  >
+    <ng-template #contentTpl>
+        <span>
+          Twój koszk jest pusty.
+        </span>
+    </ng-template>
+    <ng-template #footerTpl>
+      <button nz-button nzType="primary" routerLink="trips">Przeglądaj wycieczki</button>
+    </ng-template>
+  </nz-empty>
+</ng-template>

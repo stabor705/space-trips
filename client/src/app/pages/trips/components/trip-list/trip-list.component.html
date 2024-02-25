@@ -1,0 +1,34 @@
+<div nz-row nzGutter="16">
+  <aside nz-col [nzSpan]=6>
+    <nz-card nzTitle="Filtry">
+      <agh-trip-filter-form></agh-trip-filter-form>
+    </nz-card>
+  </aside>
+  <article nz-col [nzSpan]="18">
+    <nz-card nzTitle="Lista wycieczek">
+      <ng-container *ngIf="!(isLoading$ | async); else loading">
+        <ng-container *ngIf="trips?.length; else empty">
+          <ng-container *ngFor="let trip of trips">
+            <agh-trip [trip]="trip"></agh-trip>
+          </ng-container>
+        </ng-container>
+        <ng-template #empty>
+          <nz-empty></nz-empty>
+        </ng-template>
+      </ng-container>
+      <nz-pagination
+        [(nzPageIndex)]="currentPage"
+        [nzPageSize]="pageSize"
+        [nzTotal]="totalElements"
+        (nzPageIndexChange)="onPageChange($event)"
+        [nzPageSizeOptions]="[3, 5, 10, 20]"
+        (nzPageSizeChange)="onPageSizeChange($event)"
+        [nzShowSizeChanger]="true">
+      </nz-pagination>
+      <ng-template #loading>
+        <nz-skeleton *ngFor="let item of Array(3)" [nzLoading]="$any(isLoading$ | async)" [nzActive]="true"
+                     [nzAvatar]="true"></nz-skeleton>
+      </ng-template>
+    </nz-card>
+  </article>
+</div>

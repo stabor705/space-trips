@@ -1,0 +1,74 @@
+<ul nz-menu nzMode="horizontal" nzTheme="light">
+  <li nz-menu-item nzSelected routerLink="./">
+    <span nz-icon nzType="home"></span>
+    Home
+  </li>
+  <li nz-menu-item routerLink="trips">
+    <span nz-icon nzType="appstore"></span>
+    Wycieczki
+  </li>
+  <li nz-menu-item routerLink="history">
+    <span nz-icon nzType="history"></span>
+    Historia zamówień
+  </li>
+  <ng-container *aghRoleAllow="['ADMIN']">
+    <li nz-submenu nzTitle="Admin" nzIcon="setting">
+      <ul>
+        <li nz-menu-item routerLink="admin/users">Użytkownicy</li>
+        <li nz-menu-item routerLink="admin/trips">Wycieczki</li>
+        <li nz-menu-item routerLink="admin/trips/add">Dodaj wycieczkę</li>
+      </ul>
+    </li>
+  </ng-container>
+  <ng-container *aghRoleAllow="['MANAGER']">
+    <li nz-submenu nzTitle="Panel Managera" nzIcon="setting">
+      <ul>
+        <li nz-menu-item routerLink="admin/trips">Wycieczki</li>
+        <li nz-menu-item routerLink="admin/trips/add">Dodaj wycieczkę</li>
+      </ul>
+    </li>
+  </ng-container>
+  <li nz-submenu [nzTitle]="title" nzIcon="shopping-cart">
+    <ng-template #title>
+      <nz-badge [nzCount]="$any(cart$ | async)?.items.length">
+        <button nz-button nz-popover nzType="text" nzPopoverTitle="Zawartość koszyka" [nzPopoverContent]="cartPopover">Koszyk</button>
+      </nz-badge>
+    </ng-template>
+  </li>
+  <li nz-menu-item class="move-right">
+    <nz-select nzShowSearch nzPlaceHolder="{{selectedCurrency.value}}" [formControl]="selectedCurrency">
+      <nz-option nzLabel="USD" nzValue="USD"></nz-option>
+      <nz-option nzLabel="EUR" nzValue="EUR"></nz-option>
+      <nz-option nzLabel="PLN" nzValue="PLN"></nz-option>
+      <nz-option nzLabel="GBP" nzValue="GBP"></nz-option>
+      <nz-option nzLabel="CHF" nzValue="CHF"></nz-option>
+    </nz-select>
+  </li>
+  <ng-container *ngIf="loggedIn$ | async; else notLoggedIn">
+    <li nz-submenu nzTitle="{{(user$ | async)?.email}}" class="move-right">
+      <ul>
+        <li nz-menu-item (click)="logoutUser()">
+          <span nz-icon nzType="logout" nzTheme="outline"></span>
+          Wylogowanie
+        </li>
+      </ul>
+    </li>
+  </ng-container>
+  <ng-template #notLoggedIn>
+    <li nz-menu-item routerLink="auth/signin" class="move-right">
+      <span nz-icon nzType="login"></span>
+      Logowanie
+    </li>
+    <li nz-menu-item routerLink="auth/signup" class="move-right">
+      <span nz-icon nzType="delivered-procedure" nzTheme="outline"></span>
+      Rejestracja
+    </li>
+  </ng-template>
+
+
+  <ng-template #cartPopover>
+    <agh-widget></agh-widget>
+  </ng-template>
+
+</ul>
+

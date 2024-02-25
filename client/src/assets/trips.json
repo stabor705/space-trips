@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "Wycieczka w Bieszczady",
+    "country": "Polska",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra quis ante ut ultrices. Nulla in metus semper, pretium felis vitae, lobortis sapien. Donec eu felis tincidunt metus aliquam suscipit. Cras ornare est sit amet dolor porta, a molestie augue iaculis. Nullam in mi suscipit, lacinia turpis non, semper diam.",
+    "capacity": 9,
+    "available": 9,
+    "startAt": "2024-01-01",
+    "endAt": "2024-01-10",
+    "price": 1750,
+    "rating": 4.33,
+    "imageUrl": "https://placehold.it/200/200"
+  },
+  {
+    "id": 2,
+    "name": "Wycieczka do Wiednia",
+    "country": "Austria",
+    "description": "Nulla in metus semper, pretium felis vitae, lobortis sapien. Donec eu felis tincidunt metus aliquam suscipit. Cras ornare est sit amet dolor porta, a molestie augue iaculis. Nullam in mi suscipit, lacinia turpis non, semper diam.",
+    "capacity": 9,
+    "available": 6,
+    "startAt": "2024-03-11",
+    "endAt": "2024-03-17",
+    "price": 840,
+    "rating": 2.99,
+    "imageUrl": "https://placehold.it/200/200"
+  },
+  {
+    "id": 3,
+    "name": "Rajski tydzień na Majorce",
+    "country": "Hiszpania",
+    "description": "Quisque viverra quis ante ut ultrices. Nulla in metus semper, pretium felis vitae, lobortis sapien. Donec eu felis tincidunt metus aliquam suscipit. Cras ornare est sit amet dolor porta, a molestie augue iaculis. Nullam in mi suscipit, lacinia turpis non, semper diam.",
+    "capacity": 9,
+    "available": 10,
+    "startAt": "2024-07-07",
+    "endAt": "2024-07-14",
+    "price": 2450,
+    "rating": 5.12,
+    "imageUrl": "https://placehold.it/200/200"
+  }
+]

@@ -1,0 +1,53 @@
+
+<nz-card  class="information-card">
+  <nz-row gutter="16">
+    <nz-col nzSpan="24">
+      <nz-carousel nzAutoPlay>
+        <div nz-carousel-content *ngFor="let destination of featuredDestinations">
+          <img nz-image [nzSrc]="destination.image" alt="destination.name" class="carousel-image">
+        </div>
+      </nz-carousel>
+    </nz-col>
+  </nz-row>
+
+  <nz-row gutter="16" class="centered-content">
+    <nz-col nzSpan="24">
+      <h1>AGH Trips</h1>
+      <p>Studenckie biuro podróży</p>
+      <p>Email: contact&#64;agh.com</p>
+      <p>Telefon: 123-456-7890</p>
+    </nz-col>
+  </nz-row>
+</nz-card>
+
+<footer>
+  <nz-row gutter="16" class="footer-content">
+    <nz-col nzSpan="4">
+      <h2>Rezerwacja i podroz</h2>
+      <p>Ubezpieczenie</p>
+      <p>Nasi przewoznicy</p>
+      <p>Waźne informacje przed podróżą</p>
+    </nz-col>
+  <nz-col nzSpan="4">
+    <h2>Dla Klienta</h2>
+    <p>Dokumenty do pobrania</p>
+    <p>Wniosek o fakture</p>
+    <p>FAQ</p>
+  </nz-col>
+  <nz-col nzSpan="4">
+    <h2>O Nas</h2>
+    <p>Kariera</p>
+    <p>Punkty sprzedazy</p>
+    <p>Dane Osobowe</p>
+  </nz-col>
+    <nz-col nzSpan="4">
+      <h2>Odwiedź Nas!</h2>
+      <h3>Godziny otwarcia:</h3>
+      <p>Poniedziałek - Piątek: 8:00 - 16:00</p>
+      <p>Sobota: 8:00 - 14:00</p>
+    </nz-col>
+    <nz-col nzSpan="8">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1493.2346287214666!2d19.923837184711164!3d50.06533470583766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165ba716a39a4b%3A0x11d137e3b938f290!2sAGH%20C2!5e0!3m2!1spl!2spl!4v1704543692526!5m2!1spl!2spl" width="400" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </nz-col>
+  </nz-row>
+</footer>
