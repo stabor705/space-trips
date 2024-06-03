@@ -1,4 +1,4 @@
-# AGH Trips - Dokumentacja
+# Space Trips - Dokumentacja
 
 ## Instalacja zależnosci
 
@@ -7,45 +7,43 @@
 3. **start** - uruchamia jednocześnie serwer oraz klienta.
 
 ## Co zostało zrobione:
-### I część projektu
-- [x] **Zadanie 2 [5 PKT]** - Komponenty do wyświetlania wycieczek
-- [x] **Zadanie 3 [1 PKT]** - Usuwanie wycieczki
-- [x] **Zadanie 4 [2 PKT]** - Dodawanie wycieczki
-- [x] **Zadanie 5 [1 PKT]** - Ocenianie wycieczki
-- [x] **Zadanie 6 [1 PKT]** - Filtrowanie listy wycieczek
-    - po ocenie [1 PKT]
-    - po cenie [1 PKT]
--  [x] **Zadanie 7 [2 PKT]** - Komponent do wyświetlania sumarycznej wartości rezerwacji
-- [x] **Zadanie 8 [2 PKT]** - Koszyk
-- [x] **Zadanie 9 [2 PKT]** - Historia zakupów
-  - Przypomnienie o wycieczce [1 PKT]
-- [x] **Zadanie 10 [2 PKT]** - Uporzadkowanie widokow
-  - mapa z lokalizacją wycieczki [1 PKT]
--[x] ekstra za estetyczne rozwiazanie [1 PKT]
+### I milestone
+- [x]  - Komponenty do wyświetlania wycieczek
+- [x]  - Usuwanie wycieczki
+- [x]  - Dodawanie wycieczki
+- [x]  - Ocenianie wycieczki
+- [x]  - Filtrowanie listy wycieczek
+    - po ocenie 
+    - po cenie 
+-  [x]  - Komponent do wyświetlania sumarycznej wartości rezerwacji
+- [x]  - Koszyk
+- [x]  - Historia zakupów
+  - Przypomnienie o wycieczce (pop up)
+- [x] - Uporzadkowanie widokow
 
-### II część projektu
-- [x] **Zadanie 1 [3 PKT]** - Podgląd szczegółowy wycieczki
-- [x] **Zadanie 2 [1 PKT]** - Paginacja
-- [x] **Zadanie 3** - Backend
-- zdefiniowanie modelu danych [2 PKT]
-- routing i endpointy [2 PKT]
-- kontrolery [5 PKT]
+
+### II milestone
+- [x] - Podgląd szczegółowy wycieczki
+- [x]  - Paginacja
+- [x]  - Backend
+- zdefiniowanie modelu danych 
+- routing i endpointy 
+- kontrolery 
 
 ### III część projektu
-- [x] **Zadanie 1 [2 PKT]** - Rejestracja
-- [x] **Zadanie 2 [4 PKT]** - uwierzytelnianie po stronie backendu i frontendu
-- [x] **Zadanie 3 [1 PKT]** - Zmiana trybu persystencji
-  - refreshtoken [2 PKT]
-- [x] **Zadanie 4 [1 PKT]** - Role
-- [x] **Zadanie 5 [1 PKT]** - Recenzja tylko po zakupie
-- [x] **Zadanie 6 [1 PKT]** - Panel admina/managera
-- [x] **Zadanie 7 [2 PKT]** - Websockety
-- [x] **Zadanie 8 [1 PKT]** - Guardy
-- [x] **Zadanie 9 [1 PKT]** - Jedna sesja na uzytkownika
-- [x] **Zadanie 10 [1 PKT]** - Zarządzanie rolami
-- [x] **Zadanie 11 [1 PKT]** - Zarządzanie użytkownikami
-- [x] **Zadanie 12 [2 PKT]** - Korzystanie z bibliotek komponentow
-- [x] **Zadanie 13 [2 PKT]** - Jakość kodu
+- [x]  - Rejestracja/uwierzytelnianie
+- [x] - uwierzytelnianie po stronie backendu i frontendu
+- [x]  - Zmiana trybu persystencji
+  - refreshtoken 
+- [x]  - Role
+- [x]  - Recenzja tylko po zakupie
+- [x]  - Panel admina/managera
+- [x]  - Websockety
+- [x]  - Guardy
+- [x] - Jedna sesja na uzytkownika
+- [x]  - Zarządzanie rolami
+- [x]  - Zarządzanie użytkownikami
+
 
 
 ## Sumarycznie: 58 punktów
