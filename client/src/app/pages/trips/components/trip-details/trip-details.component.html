@@ -52,15 +52,6 @@
         <p>{{ tripDetails.description }}</p>
       </nz-card>
       <nz-card nzType="inner" class="trip-details">
-                <google-map
-                  height="400px"
-                  width="100%"
-                  [center]="center"
-                  [zoom]="zoom">
-                  <map-marker [position]="center"></map-marker>
-                </google-map>
-      </nz-card>
-      <nz-card nzType="inner" class="trip-details">
         <agh-comment-section [trip]="tripDetails"></agh-comment-section>
         </nz-card>
     </nz-col>

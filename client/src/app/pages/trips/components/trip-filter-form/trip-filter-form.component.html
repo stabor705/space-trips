@@ -8,8 +8,8 @@
     </nz-form-item>
 
     <nz-form-item>
-      <nz-form-label nzFor="country">Wybierz kraj podróży</nz-form-label>
-      <nz-select formControlName="country" nzAllowClear nzPlaceHolder="Wybierz kraj">
+      <nz-form-label nzFor="country">Wybierz dostępne lokalizacje</nz-form-label>
+      <nz-select formControlName="country" nzAllowClear nzPlaceHolder="Wybierz lokalizacje">
         <nz-option *ngFor="let country of tripsCountries" [nzValue]="country" [nzLabel]="country"></nz-option>
       </nz-select>
     </nz-form-item>
